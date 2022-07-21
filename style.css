@@ -1,0 +1,14 @@
+body {
+    font-family: serif;
+    font-size: 20px;
+    line-height: 150%;
+}
+
+.text {
+    min-height: 60px;
+}
+
+.button {
+    font-size: 20px;
+    line-height: 150%;
+}
