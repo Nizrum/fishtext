@@ -1,5 +1,6 @@
 const text = document.querySelector('.text');
 const button = document.querySelector('.button');
+const amountInput = document.querySelector(".amount__input");
 
 const firstPart = ['Товарищи, ', 
     'С другой стороны ', 
@@ -26,15 +27,20 @@ const fourthPart = ['существенных финансовых и админ
     'новых предложений.', 
     'направлений прогрессивного развития.'];
 
-function generatePhrase() {
-    return (
-      firstPart[Math.floor(Math.random() * firstPart.length)] +
-      secondPart[Math.floor(Math.random() * secondPart.length)] +
-      thirdPart[Math.floor(Math.random() * thirdPart.length)] +
-      fourthPart[Math.floor(Math.random() * fourthPart.length)]
-    );
+function generatePhrase(n=1) {
+    let result = [];
+    for (let i = 0; i < n; i++) {
+      result.push(
+        firstPart[Math.floor(Math.random() * firstPart.length)] +
+        secondPart[Math.floor(Math.random() * secondPart.length)] +
+        thirdPart[Math.floor(Math.random() * thirdPart.length)] +
+        fourthPart[Math.floor(Math.random() * fourthPart.length)]);
+    }
+    return result.join(" ");
 }
 
 button.addEventListener('click', function () {
-    text.textContent = generatePhrase();
+    text.textContent = generatePhrase(amountInput.value);
 });
+
+text.textContent = generatePhrase();

@@ -1,14 +1,53 @@
-body {
-    font-family: serif;
-    font-size: 20px;
-    line-height: 150%;
+* {
+    box-sizing: border-box;
 }
 
-.text {
-    min-height: 60px;
+body {
+    font-family: 'IBM Plex Mono', monospace;
+    padding: 50px 30px;
+    font-size: 20px;
+    line-height: 150%;
+    background-color: rgba(0, 234, 255, 0.15);
+}
+
+.title {
+    margin: 0;
+    margin-bottom: 30px;
+}
+
+.amount {
+    display: block;
+    margin-bottom: 20px;
+}
+
+.amount__input {
+    font-family: 'IBM Plex Mono', monospace;
+    padding: 5px;
+    min-width: 30px;
+    border: none;
+    border-radius: 3px;
+    margin-left: 10px;
+    width: 100px;
 }
 
 .button {
+    position: relative;
+    font-family: 'IBM Plex Mono', monospace;
     font-size: 20px;
     line-height: 150%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 1);
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.text {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
 }

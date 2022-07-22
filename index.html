@@ -5,12 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Рыбный Текст</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Генератор рыбного текста</h1>
+    <h1 class="title">Генератор рыбного текста</h1>
+    <label class="amount">
+        <span>Количество предложений:</span>
+        <input type="number" class="amount__input" value="1">
+    </label>
+    <button class="button">Сгенерировать</button>
     <p class="text"></p>
-    <button class="button">Сгенерировать текст</button>
     <script src="script.js"></script>
 </body>
 </html>
