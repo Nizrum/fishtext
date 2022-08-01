@@ -1,5 +1,6 @@
 const text = document.querySelector('.text');
-const button = document.querySelector('.button');
+const button = document.querySelector('.button_generate');
+const buttonCopy = document.querySelector('.button_copy');
 const amountInput = document.querySelector(".amount__input");
 
 const firstPart = ['Товарищи, ', 
@@ -41,6 +42,12 @@ function generatePhrase(n=1) {
 
 button.addEventListener('click', function () {
     text.textContent = generatePhrase(amountInput.value);
+});
+
+buttonCopy.addEventListener('click', function () {
+    text.select();
+    document.execCommand("copy");
+    alert('Скопировано в буфер обмена');
 });
 
 text.textContent = generatePhrase();
