@@ -8,7 +8,7 @@ const firstPart = ['Товарищи, ',
     'Равным образом ', 
     'Не следует, однако, забывать, что ', 
     'Таким образом, ', 
-    'Повседневная практика показывет, что '];
+    'Повседневная практика показывает, что '];
 const secondPart = ['реализация намеченных плановых заданий ', 
     'рамки и место обучения кадров ', 
     'постоянный количественный рост и сфера нашей активности ', 
@@ -28,26 +28,33 @@ const fourthPart = ['существенных финансовых и админ
     'новых предложений.', 
     'направлений прогрессивного развития.'];
 
-function generatePhrase(n=1) {
-    let result = [];
-    for (let i = 0; i < n; i++) {
-      result.push(
-        firstPart[Math.floor(Math.random() * firstPart.length)] +
+function generatePhrase(n = Math.floor(Math.random() * 10) + 1) {
+  let result = [];
+  for (let i = 0; i < n; i++) {
+    result.push(
+      firstPart[Math.floor(Math.random() * firstPart.length)] +
         secondPart[Math.floor(Math.random() * secondPart.length)] +
         thirdPart[Math.floor(Math.random() * thirdPart.length)] +
-        fourthPart[Math.floor(Math.random() * fourthPart.length)]);
-    }
-    return result.join(" ");
+        fourthPart[Math.floor(Math.random() * fourthPart.length)]
+    );
+  }
+  return result.join(" ");
 }
 
 button.addEventListener('click', function () {
-    text.textContent = generatePhrase(amountInput.value);
+    let result = [];
+    for (let i = 0; i < amountInput.value; i++) {
+        result.push(generatePhrase());
+    }
+    text.value = result.join("\n\n");
+    buttonCopy.disabled = false;
 });
 
 buttonCopy.addEventListener('click', function () {
     text.select();
     document.execCommand("copy");
-    alert('Скопировано в буфер обмена');
+    buttonCopy.textContent = 'Скопировано';
+    buttonCopy.disabled = true;
 });
 
-text.textContent = generatePhrase();
+text.value = generatePhrase();
