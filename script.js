@@ -1,7 +1,9 @@
 const text = document.querySelector('.text');
 const button = document.querySelector('.button_generate');
 const buttonCopy = document.querySelector('.button_copy');
-const amountInput = document.querySelector(".amount__input");
+const amountInput = document.querySelector(".amount__input_paragraphs");
+const sentenceAmount = document.querySelector(".amount__input_sentences");
+const manualCheckbox = document.querySelector(".manual-setup__checkbox");
 
 const firstPart = ['Товарищи, ', 
     'С другой стороны ', 
@@ -44,7 +46,11 @@ function generatePhrase(n = Math.floor(Math.random() * 10) + 1) {
 button.addEventListener('click', function () {
     let result = [];
     for (let i = 0; i < amountInput.value; i++) {
-        result.push(generatePhrase());
+        if (manualCheckbox.checked) {
+            result.push(generatePhrase(sentenceAmount.value));
+        } else {
+            result.push(generatePhrase());
+        }
     }
     text.value = result.join("\n\n");
     buttonCopy.disabled = false;
@@ -57,4 +63,8 @@ buttonCopy.addEventListener('click', function () {
     buttonCopy.disabled = true;
 });
 
-text.value = generatePhrase();
+manualCheckbox.addEventListener('click', function () {
+    sentenceAmount.disabled = !manualCheckbox.checked;
+});
+
+text.value = generatePhrase(1);

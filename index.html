@@ -14,7 +14,15 @@
     <h1 class="title">Генератор рыбного текста</h1>
     <label class="amount">
         <span>Количество абзацев:</span>
-        <input type="number" class="amount__input" value="1">
+        <input type="number" class="amount__input amount__input_paragraphs" value="1">
+    </label>
+    <label class="manual-setup">
+        <input type="checkbox" class="manual-setup__checkbox">
+        <span>Выбрать количество предложений вручную</span>
+    </label>
+    <label class="amount amount_sentences">
+        <input type="number" class="amount__input amount__input_sentences" value="1" disabled>
+        <span>Количество предложений в абзаце:</span>
     </label>
     <button class="button button_generate">Сгенерировать</button>
     <button class="button button_copy">Скопировать</button>
