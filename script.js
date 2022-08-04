@@ -1,10 +1,12 @@
+// Получение HTML элементов
 const text = document.querySelector('.text');
-const button = document.querySelector('.button_generate');
-const buttonCopy = document.querySelector('.button_copy');
-const amountInput = document.querySelector(".amount__input_paragraphs");
-const sentenceAmount = document.querySelector(".amount__input_sentences");
+const generateButton = document.querySelector('.button_generate');
+const copyButton = document.querySelector('.button_copy');
+const paragraphsAmount = document.querySelector(".amount__input_paragraphs");
+const sentencesAmount = document.querySelector(".amount__input_sentences");
 const manualCheckbox = document.querySelector(".manual-setup__checkbox");
 
+// Части предложений
 const firstPart = ['Товарищи, ', 
     'С другой стороны ', 
     'Равным образом ', 
@@ -30,7 +32,8 @@ const fourthPart = ['существенных финансовых и админ
     'новых предложений.', 
     'направлений прогрессивного развития.'];
 
-function generatePhrase(n = Math.floor(Math.random() * 10) + 1) {
+// Функция генерации абзаца текста
+function generateParagraph(n = Math.floor(Math.random() * 10) + 1) {
   let result = [];
   for (let i = 0; i < n; i++) {
     result.push(
@@ -43,28 +46,39 @@ function generatePhrase(n = Math.floor(Math.random() * 10) + 1) {
   return result.join(" ");
 }
 
-button.addEventListener('click', function () {
+// Обработка клика по кнопке "Сгенерировать"
+generateButton.addEventListener('click', function () {
     let result = [];
-    for (let i = 0; i < amountInput.value; i++) {
+    if (paragraphsAmount.value <= 0) {
+        paragraphsAmount.value = 1;
+    }
+    for (let i = 0; i < paragraphsAmount.value; i++) {
         if (manualCheckbox.checked) {
-            result.push(generatePhrase(sentenceAmount.value));
+            if (sentencesAmount.value <= 0) {
+                sentencesAmount.value = 1;
+            }
+            result.push(generateParagraph(sentencesAmount.value));
         } else {
-            result.push(generatePhrase());
+            result.push(generateParagraph());
         }
     }
     text.value = result.join("\n\n");
-    buttonCopy.disabled = false;
+    copyButton.textContent = "Скопировать";
+    copyButton.disabled = false;
 });
 
-buttonCopy.addEventListener('click', function () {
+// Обработка клика по кнопке "Скопировать"
+copyButton.addEventListener('click', function () {
     text.select();
     document.execCommand("copy");
-    buttonCopy.textContent = 'Скопировано';
-    buttonCopy.disabled = true;
+    copyButton.textContent = 'Скопировано';
+    copyButton.disabled = true;
 });
 
+// Обработка клика по чекбоксу "Выбрать количество предложений вручную"
 manualCheckbox.addEventListener('click', function () {
-    sentenceAmount.disabled = !manualCheckbox.checked;
+    sentencesAmount.disabled = !manualCheckbox.checked;
 });
 
-text.value = generatePhrase(1);
+// Генерация одного случайного предложения при загрузке страницы
+text.value = generateParagraph(1);
